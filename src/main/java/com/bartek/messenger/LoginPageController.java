@@ -14,12 +14,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginPageController {
-    @FXML
-    private TextField usernameField;
-    @FXML
-    private PasswordField passwordField;
-    @FXML
-    private Label warningsLabel;
+    public TextField usernameField;
+    public PasswordField passwordField;
+    public Label warningsLabel;
 
     public void redirectToSignUpPage(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(MessengerApp.class.getResource("FXML-files/SignUpPage.fxml"));

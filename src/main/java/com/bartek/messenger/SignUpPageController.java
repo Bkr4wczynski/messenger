@@ -2,28 +2,21 @@ package com.bartek.messenger;
 
 import com.bartek.messenger.utils.Validator;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import com.bartek.messenger.utils.Validator;
 import java.io.IOException;
 
 public class SignUpPageController {
-    @FXML
-    private Label warningsLabel;
-    @FXML
-    private TextField usernameField;
-    @FXML
+    public Label warningsLabel;
+    public TextField usernameField;
     public PasswordField passwordField;
-    @FXML
     public PasswordField passwordConfirmationField;
 
     public void redirectToLoginPage(ActionEvent event) throws IOException {
@@ -33,10 +26,12 @@ public class SignUpPageController {
         stage.setScene(scene);
         stage.show();
     }
-    public void signUp(){
+    public boolean signUp(){
         if (validate()){
             // perform sign up logic
+            return true;
         }
+        return false;
     }
     private boolean validate(){
         if (!Validator.CHECK_IF_PASSWORDS_ARE_IDENTICAL(passwordField.getText(), passwordConfirmationField.getText())){
@@ -54,5 +49,4 @@ public class SignUpPageController {
         warningsLabel.setText("");
         return true;
     }
-
 }
