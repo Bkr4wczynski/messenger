@@ -30,7 +30,7 @@
             <HBox prefHeight="25.0" prefWidth="250.0" spacing="20.0">
                <children>
                   <Label prefHeight="22.0" text="Don't have an account?" />
-                  <Hyperlink text="Sign up" />
+                  <Hyperlink onAction="#redirectToSignUpPage" text="Sign up" />
                </children>
             </HBox>
          </children>
