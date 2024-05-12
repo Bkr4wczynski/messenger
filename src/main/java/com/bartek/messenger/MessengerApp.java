@@ -10,7 +10,7 @@ import java.io.IOException;
 public class MessengerApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MessengerApp.class.getResource("FXML-files/welcomePage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MessengerApp.class.getResource("FXML-files/SingUpPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Messenger");
         stage.setScene(scene);
