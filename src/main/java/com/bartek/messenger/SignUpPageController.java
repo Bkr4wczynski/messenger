@@ -1,5 +1,6 @@
 package com.bartek.messenger;
 
+import com.bartek.messenger.utils.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import com.bartek.messenger.utils.Validator;
 import java.io.IOException;
 
 public class SignUpPageController {
@@ -37,34 +39,20 @@ public class SignUpPageController {
         }
     }
     private boolean validate(){
-        if (!checkIfPasswordsAreIdentical()){
+        if (!Validator.CHECK_IF_PASSWORDS_ARE_IDENTICAL(passwordField.getText(), passwordConfirmationField.getText())){
             warningsLabel.setText("Password are not identical!");
             return false;
         }
-        if (!checkIfUsernameIsValid()){
+        if (!Validator.CHECK_IF_USERNAME_IS_VALID(usernameField.getText())){
             warningsLabel.setText("Username is not valid!");
             return false;
         }
-        if (!checkIfPasswordIsLongEnough()){
+        if (!Validator.CHECK_IF_PASSWORD_IS_LONG_ENOUGH(passwordField.getText())){
             warningsLabel.setText("Password is too short");
             return false;
         }
         warningsLabel.setText("");
         return true;
     }
-    private boolean checkIfUsernameIsValid(){
-        String username = usernameField.getText();
-        if (username.isBlank())
-            return false;
-        if (username.length() < 3)
-            return false;
-        return username.matches("^[a-zA-Z0-9_-]+$");
-    }
-    private boolean checkIfPasswordIsLongEnough(){
-        String password = passwordField.getText();
-        return password.length() >= 8;
-    }
-    private boolean checkIfPasswordsAreIdentical(){
-        return passwordField.getText().equals(passwordConfirmationField.getText());
-    }
+
 }
