@@ -25,7 +25,7 @@ public class LoginPageController extends RedirectionPage{
         if (true){
             // login succeed
             try {
-                redirect(event, "FXML-files/mainPage.fxml");
+                redirect(event, "FXML-files/mainPage/mainPage.fxml");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

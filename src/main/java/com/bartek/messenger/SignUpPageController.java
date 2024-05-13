@@ -25,7 +25,7 @@ public class SignUpPageController extends RedirectionPage{
         if (validate()){
             // perform sign up logic
             try {
-                redirect(event, "FXML-files/mainPage.fxml");
+                redirect(event, "FXML-files/mainPage/mainPage.fxml");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
