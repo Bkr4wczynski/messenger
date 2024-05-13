@@ -1,14 +1,9 @@
 package com.bartek.messenger;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -17,12 +12,27 @@ public class LoginPageController extends RedirectionPage{
     public PasswordField passwordField;
     public Label warningsLabel;
 
-    public void redirectToSignUpPage(ActionEvent event) throws IOException {
-        redirect(event, "FXML-files/SignUpPage.fxml");
+    public void redirectToSignUpPage(ActionEvent event) {
+        try {
+            redirect(event, "FXML-files/signUpPage.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void login(){
+    public void login(ActionEvent event){
         // tries to login via database
+        if (true){
+            // login succeed
+            try {
+                redirect(event, "FXML-files/mainPage.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            // login not succeed
+        }
     }
 
 }
