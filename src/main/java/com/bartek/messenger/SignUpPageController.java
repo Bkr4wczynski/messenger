@@ -13,18 +13,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SignUpPageController {
+public class SignUpPageController extends RedirectionPage{
     public Label warningsLabel;
     public TextField usernameField;
     public PasswordField passwordField;
     public PasswordField passwordConfirmationField;
 
     public void redirectToLoginPage(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(MessengerApp.class.getResource("FXML-files/LoginPage.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.show();
+        redirect(event, "FXML-files/LoginPage.fxml");
     }
     public boolean signUp(){
         if (validate()){
