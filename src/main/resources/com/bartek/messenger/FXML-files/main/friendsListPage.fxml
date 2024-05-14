@@ -6,15 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="985.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="985.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bartek.messenger.mainPage.FriendsListPageController">
    <children>
       <TextField layoutX="50.0" layoutY="20.0" prefWidth="900.0" promptText="Search">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="50.0" layoutY="75.0" prefWidth="900.0" text="Avaible online - 0">
+      <Label fx:id="displayLabel" layoutX="50.0" layoutY="75.0" prefWidth="900.0" text="Available online - 0">
          <font>
             <Font size="20.0" />
          </font>

@@ -19,22 +19,22 @@
             </Label>
             <HBox alignment="CENTER_RIGHT" layoutX="160.0" prefHeight="50.0" spacing="40.0">
                <children>
-                  <Button mnemonicParsing="false" prefWidth="130.0" text="Avaible">
+                  <Button mnemonicParsing="false" onAction="#showAvailable" prefWidth="130.0" text="Available">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="130.0" text="All">
+                  <Button mnemonicParsing="false" onAction="#showAll" prefWidth="130.0" text="All">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="130.0" text="Waiting">
+                  <Button mnemonicParsing="false" onAction="#showWaiting" prefWidth="130.0" text="Waiting">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="130.0" text="Blocked">
+                  <Button mnemonicParsing="false" onAction="#showBlocked" prefWidth="130.0" text="Blocked">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -51,6 +51,6 @@
             </HBox>
          </children>
       </Pane>
-      <fx:include layoutY="50.0" source="friendsListPage.fxml" />
+      <fx:include fx:id="friendsListPage" layoutY="50.0" source="friendsListPage.fxml" />
    </children>
 </AnchorPane>
