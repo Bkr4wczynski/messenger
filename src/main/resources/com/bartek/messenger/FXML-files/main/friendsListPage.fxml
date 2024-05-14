@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -14,11 +14,11 @@
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="50.0" layoutY="75.0" prefWidth="150.0" text="Avaible online">
+      <Label layoutX="50.0" layoutY="75.0" prefWidth="900.0" text="Avaible online - 0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="50.0" layoutY="100.0" prefHeight="815.0" prefWidth="900.0" />
+      <ListView layoutX="50.0" layoutY="100.0" prefHeight="815.0" prefWidth="900.0" />
    </children>
 </AnchorPane>
