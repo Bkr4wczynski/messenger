@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="1015.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bartek.messenger.mainPage.MainPanelController">
+<AnchorPane prefHeight="1015.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bartek.messenger.mainPage.FriendsPageController">
    <children>
-      <Pane layoutX="40.0" prefHeight="50.0" prefWidth="1420.0">
+      <Pane prefHeight="50.0" prefWidth="1460.0">
          <children>
             <Label alignment="CENTER" prefHeight="50.0" prefWidth="150.0" text="Friends">
                <font>
@@ -51,9 +51,6 @@
                </padding>
             </HBox>
          </children>
-         <padding>
-            <Insets left="40.0" />
-         </padding>
       </Pane>
    </children>
 </AnchorPane>
