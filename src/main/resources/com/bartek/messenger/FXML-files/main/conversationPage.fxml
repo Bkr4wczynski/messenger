@@ -3,16 +3,17 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="1015.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="1015.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bartek.messenger.mainPage.conversationPageController">
    <children>
       <Pane prefHeight="50.0" prefWidth="1420.0">
          <children>
-            <Label prefHeight="50.0" prefWidth="400.0" text="Tfuj stary pijany 3000">
+            <Label fx:id="usernameLabel" prefHeight="50.0" prefWidth="400.0" text="Tfuj stary pijany 3000">
                <font>
                   <Font size="28.0" />
                </font>
@@ -20,17 +21,22 @@
                   <Insets left="50.0" />
                </padding>
             </Label>
-            <Label layoutX="410.0" prefHeight="50.0" prefWidth="400.0" text="Last active 5 years ago">
+            <Label fx:id="activityLabel" layoutX="410.0" prefHeight="50.0" prefWidth="400.0" text="Last active 5 years ago">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <ScrollPane layoutX="50.0" layoutY="50.0" prefHeight="915.0" prefWidth="1000.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
+      <SplitPane dividerPositions="0.8" layoutX="50.0" layoutY="50.0" prefHeight="915.0" prefWidth="1370.0">
+         <items>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+         </items>
+      </SplitPane>
    </children>
 </AnchorPane>
