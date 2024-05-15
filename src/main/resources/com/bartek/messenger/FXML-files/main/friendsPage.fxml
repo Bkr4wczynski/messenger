@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1015.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bartek.messenger.mainPage.FriendsPageController">
+<AnchorPane prefHeight="1015.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bartek.messenger.main.FriendsPageController">
    <children>
       <Pane prefHeight="50.0" prefWidth="1460.0">
          <children>

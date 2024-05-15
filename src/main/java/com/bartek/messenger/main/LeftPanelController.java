@@ -1,7 +1,6 @@
-package com.bartek.messenger.mainPage;
+package com.bartek.messenger.main;
 
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +15,7 @@ public class LeftPanelController implements Initializable {
     }
 
     public void loadFriendsPage(){
-        parentController.test();
+        parentController.changeMainPageToFriendsPage();
     }
     public void displayProfile(){
 
