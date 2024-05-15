@@ -46,15 +46,11 @@ public class User {
         return online;
     }
 
-    public Set<User> getFriends() {
+    public Set<Friend> getFriends() {
         return friends;
     }
 
     public Set<User> getBlocked() {
         return blocked;
-    }
-
-    public Set<User> getMuted() {
-        return muted;
     }
 }
