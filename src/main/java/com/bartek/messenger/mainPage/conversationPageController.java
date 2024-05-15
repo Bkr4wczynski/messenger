@@ -26,6 +26,7 @@ public class conversationPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         friend = getCurrentFriend();
+        user = getCurrentUser();
         usernameLabel.setText(friend.username);
         activityLabel.setText(friend.isOnline()+"");
     }
