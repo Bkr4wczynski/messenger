@@ -12,12 +12,15 @@
    <children>
       <Pane prefHeight="50.0" prefWidth="1460.0">
          <children>
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="150.0" text="Friends">
+            <Label prefHeight="50.0" prefWidth="200.0" text="Friends">
                <font>
                   <Font size="40.0" />
                </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
             </Label>
-            <HBox alignment="CENTER_RIGHT" layoutX="160.0" prefHeight="50.0" spacing="40.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="210.0" prefHeight="50.0" spacing="40.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#showAvailable" prefWidth="130.0" text="Available">
                      <font>
