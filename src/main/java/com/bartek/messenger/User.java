@@ -7,12 +7,14 @@ public class User {
     public String username;
     private final Set<User> friends;
     private final Set<User> blocked;
+    private final Set<User> muted;
     private boolean online;
 
     public User(String username) {
         this.username = username;
         friends = new HashSet<>();
         blocked = new HashSet<>();
+        muted = new HashSet<>();
     }
     public void addFriend(User user){
         friends.add(user);
@@ -26,6 +28,12 @@ public class User {
     }
     public void unBlock(User user){
         blocked.remove(user);
+    }
+    public void mute(User user){
+        muted.add(user);
+    }
+    public void unMute(User user){
+        muted.remove(user);
     }
     public void goOnline(){
         online = true;
@@ -44,5 +52,9 @@ public class User {
 
     public Set<User> getBlocked() {
         return blocked;
+    }
+
+    public Set<User> getMuted() {
+        return muted;
     }
 }
