@@ -11,6 +11,8 @@ class ValidatorTest {
         assertFalse(validate("1234", "Password123_", "Password123"));
         assertFalse(validate("1234/", "Password123_", "Password123_"));
         assertFalse(validate("12345", "P-ass12", "P-ass12"));
+        assertFalse(validate("12345678900987654321qwertyuiop", "P-ass12", "P-ass12"));
+        assertFalse(validate("1234", "12345678900987654321qwertyuiop", "12345678900987654321qwertyuiop"));
 
         assertTrue(validate("1234", "Password123_", "Password123_"));
         assertTrue(validate("Jasiu1", "Jan4k2024_", "Jan4k2024_"));
