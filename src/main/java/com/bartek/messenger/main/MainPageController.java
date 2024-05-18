@@ -14,7 +14,7 @@ public class MainPageController {
         try {
             anchorPane.getChildren().clear();
             anchorPane.getChildren().add(
-                    FXMLLoader.load(Objects.requireNonNull(MessengerApp.class.getResource("FXML-files/main/friendsPage.fxml"))));
+                    FXMLLoader.load(Objects.requireNonNull(MessengerApp.class.getResource("FXML-files/main/subPages/friendsPage.fxml"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -23,7 +23,7 @@ public class MainPageController {
         try {
             anchorPane.getChildren().clear();
             anchorPane.getChildren().add(
-                    FXMLLoader.load(Objects.requireNonNull(MessengerApp.class.getResource("FXML-files/main/conversationPage.fxml"))));
+                    FXMLLoader.load(Objects.requireNonNull(MessengerApp.class.getResource("FXML-files/main/subPages/conversationPage.fxml"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
