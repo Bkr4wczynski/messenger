@@ -3,6 +3,8 @@ module com.bartek.messenger {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
+    requires com.zaxxer.hikari;
+    requires java.sql;
 
     opens com.bartek.messenger to javafx.fxml;
     exports com.bartek.messenger;
