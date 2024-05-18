@@ -9,12 +9,16 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
     @FXML
     private LeftPanelController leftPanelController;
-    @FXML MainPageController mainPageController;
+    @FXML
+    MainPageController mainPageController;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         leftPanelController.setParentController(this);
     }
     public void changeMainPageToFriendsPage(){
         mainPageController.changePageToFriendsPage();
+    }
+    public void changeMainPageToProfilePage(){
+        mainPageController.changePageToProfilePage();
     }
 }

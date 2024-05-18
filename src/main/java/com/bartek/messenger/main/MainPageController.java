@@ -9,23 +9,28 @@ import java.util.Objects;
 
 public class MainPageController {
     public AnchorPane anchorPane;
-
-    public void changePageToFriendsPage(){
+    private void changePage(String pageName){
         try {
             anchorPane.getChildren().clear();
             anchorPane.getChildren().add(
-                    FXMLLoader.load(Objects.requireNonNull(MessengerApp.class.getResource("FXML-files/main/subPages/friendsPage.fxml"))));
+                    FXMLLoader.load(Objects.requireNonNull(MessengerApp.class.getResource(
+                            "FXML-files/main/subPages/" + pageName + ".fxml"
+                            ))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    public void changePageToFriendsPage(){
+        changePage("friendsPage");
+
+    }
     public void changePageToConversationPage(){
-        try {
-            anchorPane.getChildren().clear();
-            anchorPane.getChildren().add(
-                    FXMLLoader.load(Objects.requireNonNull(MessengerApp.class.getResource("FXML-files/main/subPages/conversationPage.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        changePage("conversationPage");
+
+    }
+
+    public void changePageToProfilePage(){
+        changePage("profilePage");
     }
 }

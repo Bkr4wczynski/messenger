@@ -18,6 +18,6 @@ public class LeftPanelController implements Initializable {
         parentController.changeMainPageToFriendsPage();
     }
     public void displayProfile(){
-
+        parentController.changeMainPageToProfilePage();
     }
 }
