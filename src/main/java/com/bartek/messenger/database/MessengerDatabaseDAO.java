@@ -42,7 +42,10 @@ public class MessengerDatabaseDAO implements AutoCloseable{
             preparedStatement.setString(2, password);
             preparedStatement.setString(3, gender.name());
 
-            preparedStatement.executeUpdate();
+            int result = preparedStatement.executeUpdate();
+            if (result == 1){
+                System.out.println("Successfully added new user to database!");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
