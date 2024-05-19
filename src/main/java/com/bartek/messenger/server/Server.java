@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
-    static final int PORT = 5056;
+    public static final int PORT = 5056;
     public static void main(String[] args) {
         try (
                 ServerSocket serverSocket = new ServerSocket(PORT);

@@ -1,5 +1,6 @@
 package com.bartek.messenger;
 
+import com.bartek.messenger.client.Client;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,5 +20,10 @@ public class MessengerApp extends Application {
 
     public static void main(String[] args) {
         launch();
+        try {
+            Client.startClientService();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
