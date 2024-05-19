@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 public class MessengerApp extends Application {
     @Override
@@ -19,8 +20,10 @@ public class MessengerApp extends Application {
     }
 
     public static void main(String[] args) {
+        Client client = null;
         try {
-            Client.startClientService();
+            client = new Client(InetAddress.getByName("localhost"), 5056);
+            client.startClientService();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

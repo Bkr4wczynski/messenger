@@ -8,14 +8,26 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client {
-    public static void startClientService() throws IOException {
+    private Socket socket;
+    private InetAddress ip;
+    private DataInputStream dataInputStream;
+    private DataOutputStream dataOutputStream;
+
+    public Client(InetAddress ip, int portNumber) throws IOException {
+        this.ip = ip;
+        this.socket = new Socket(ip, portNumber);
+        dataInputStream = new DataInputStream(socket.getInputStream());
+        dataOutputStream = new DataOutputStream(socket.getOutputStream());
+    }
+
+    public void startClientService() throws IOException {
         try {
             System.out.println("Client service started");
-            InetAddress ip = InetAddress.getByName("localhost");
-            Socket socket = new Socket(ip, 5056);
-            DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-            DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
+            System.out.println(dataInputStream.readUTF());
+            dataOutputStream.writeUTF("12345");
+            dataInputStream.close();
+            dataOutputStream.close();
 
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);

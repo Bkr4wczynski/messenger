@@ -19,6 +19,11 @@ public class ClientHandler implements Runnable{
     @Override
     public void run() {
         String received;
-
+        try {
+            dataOutputStream.writeUTF("aaaaaa");
+            System.out.println(dataInputStream.readUTF());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
