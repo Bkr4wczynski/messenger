@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 public class MessengerDatabaseDAO implements AutoCloseable{
     Connection connection;
+
     public void openConnection(){
         try {
             connection = DataSource.getConnection();
@@ -29,6 +30,19 @@ public class MessengerDatabaseDAO implements AutoCloseable{
             while (resultSet.next()){
                 System.out.println(resultSet.getString(2));
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void addNewUserToDatabase(String username, String password, Gender gender){
+        String query = "INSERT INTO users (username, password, gender) VALUES (?, ?, ?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, gender.name());
+
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

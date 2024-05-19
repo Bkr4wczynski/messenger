@@ -2,6 +2,7 @@ package com.bartek.messenger.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable{
@@ -17,5 +18,7 @@ public class ClientHandler implements Runnable{
 
     @Override
     public void run() {
+        String received;
+
     }
 }

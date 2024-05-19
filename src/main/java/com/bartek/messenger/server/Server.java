@@ -17,6 +17,7 @@ public class Server {
                 MessengerDatabaseDAO messengerDatabaseDAO = new MessengerDatabaseDAO()
         ){
             Socket socket;
+            System.out.println("Server is open running");
             while (true) {
                 socket = serverSocket.accept();
                 System.out.println("Connection established with client: "+socket.getInetAddress());
