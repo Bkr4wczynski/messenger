@@ -23,6 +23,8 @@ public class LoginPageController extends RedirectionPage {
 
     public void login(ActionEvent event){
         // tries to login via database
+        String username = usernameField.getText();
+        String password = passwordField.getText();
         if (true){
             // login succeed
             try {

@@ -1,6 +1,7 @@
 package com.bartek.messenger.main;
 
 import com.bartek.messenger.User;
+import com.bartek.messenger.Gender;
 import com.bartek.messenger.database.UserGetter;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class ConversationPageController implements Initializable {
@@ -17,7 +19,7 @@ public class ConversationPageController implements Initializable {
     User friend;
     private User getCurrentFriend(){
         // logic
-        return new User("Cwaniak");
+        return new User("Cwaniak", 5, Gender.Male, LocalDateTime.now());
     }
     private User getCurrentUser(){
         return UserGetter.GET_CURRENT_USER();

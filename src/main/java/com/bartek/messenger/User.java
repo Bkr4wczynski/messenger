@@ -1,16 +1,23 @@
 package com.bartek.messenger;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 public class User {
+    public int userID;
     public String username;
+    public Gender gender;
+    public LocalDateTime createdAt;
     private final Set<Friend> friends;
     private final Set<User> blocked;
     private boolean online;
 
-    public User(String username) {
+    public User(int userID, String username, Gender gender, LocalDateTime createdAt) {
         this.username = username;
+        this.userID = userID;
+        this.gender = gender;
+        this.createdAt = createdAt;
         friends = new HashSet<>();
         blocked = new HashSet<>();
     }
