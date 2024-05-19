@@ -22,11 +22,11 @@ public class User {
         blocked = new HashSet<>();
     }
     public void addFriend(User addedFriend){
-        Friend friend = new Friend(addedFriend.username, this);
+        Friend friend = new Friend(addedFriend, this);
         friends.add(friend);
     }
     public void removeFriend(User removedFriend){
-        Friend friend = new Friend(removedFriend.username, this);
+        Friend friend = new Friend(removedFriend, this);
         friends.remove(friend);
     }
     public void block(User user){

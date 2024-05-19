@@ -4,8 +4,8 @@ public class Friend extends User{
     public User friendOf;
     private boolean isMuted;
 
-    public Friend(String username, User friendOf) {
-        super(username);
+    public Friend(User friend, User friendOf) {
+        super(friend.userID, friend.username, friend.gender, friend.createdAt);
         this.friendOf = friendOf;
     }
 
