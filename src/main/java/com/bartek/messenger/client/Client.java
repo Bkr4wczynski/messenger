@@ -21,15 +21,13 @@ public class Client {
     }
 
     public void startClientService() throws IOException {
+
+    }
+    public void closeStreams(){
         try {
-            System.out.println("Client service started");
-
-            System.out.println(dataInputStream.readUTF());
-            dataOutputStream.writeUTF("12345");
-            dataInputStream.close();
             dataOutputStream.close();
-
-        } catch (UnknownHostException e) {
+            dataInputStream.close();
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

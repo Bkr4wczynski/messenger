@@ -19,9 +19,13 @@ public class ClientHandler implements Runnable{
     @Override
     public void run() {
         String received;
+
+    }
+    public void terminateConnection(){
         try {
-            dataOutputStream.writeUTF("aaaaaa");
-            System.out.println(dataInputStream.readUTF());
+            clientSocket.close();
+            dataOutputStream.close();
+            dataInputStream.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
