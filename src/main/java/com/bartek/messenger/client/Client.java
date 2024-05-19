@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class Client {
     private Socket socket;
@@ -21,7 +20,10 @@ public class Client {
     }
 
     public void startClientService() throws IOException {
-
+        System.out.println("Client service has started");
+        dataOutputStream.writeUTF("Bartek");
+        dataOutputStream.writeUTF("Dupa12345");
+        closeStreams();
     }
     public void closeStreams(){
         try {

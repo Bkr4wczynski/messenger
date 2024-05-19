@@ -25,7 +25,7 @@ public class Server {
                 DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
                 System.out.println("Assigning new thread for client...");
-                ClientHandler clientHandler = new ClientHandler(socket, dataInputStream, dataOutputStream);
+                ClientHandler clientHandler = new ClientHandler(socket, dataInputStream, dataOutputStream, messengerDatabaseDAO);
                 Thread thread = new Thread(clientHandler);
                 thread.start();
                 System.out.println("Thread started successfully!");
