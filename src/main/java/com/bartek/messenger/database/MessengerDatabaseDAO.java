@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MessengerDatabaseDAO {
+public class MessengerDatabaseDAO implements AutoCloseable{
     Connection connection;
     public void openConnection(){
         try {
@@ -32,5 +32,10 @@ public class MessengerDatabaseDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void close() throws Exception {
+        closeConnection();
     }
 }
