@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 public class Client {
     public static void startClientService() throws IOException {
         try {
+            System.out.println("Client service started");
             InetAddress ip = InetAddress.getByName("localhost");
             Socket socket = new Socket(ip, 5056);
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
