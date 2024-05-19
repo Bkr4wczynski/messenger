@@ -19,7 +19,7 @@ public class ConversationPageController implements Initializable {
     User friend;
     private User getCurrentFriend(){
         // logic
-        return new User("Cwaniak", 5, Gender.Male, LocalDateTime.now());
+        return new User(5, "Cwaniak", Gender.Male, LocalDateTime.now());
     }
     private User getCurrentUser(){
         return UserGetter.GET_CURRENT_USER();
