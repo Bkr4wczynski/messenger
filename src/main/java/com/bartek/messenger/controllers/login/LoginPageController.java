@@ -7,6 +7,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginPageController extends RedirectionPage {
     public TextField usernameField;
@@ -36,6 +38,9 @@ public class LoginPageController extends RedirectionPage {
         else {
             // login not succeed
         }
+    }
+    public List<String> getLoginCredentials(){
+        return Arrays.asList(usernameField.getText(), passwordField.getText());
     }
 
 }

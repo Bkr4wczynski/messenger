@@ -14,7 +14,10 @@ public class ClientHandler implements Runnable{
     private final DataOutputStream dataOutputStream;
     private final MessengerDatabaseDAO messengerDatabaseDAO;
 
-    public ClientHandler(Socket clientSocket, DataInputStream dataInputStream, DataOutputStream dataOutputStream, MessengerDatabaseDAO messengerDatabaseDAO) {
+    public ClientHandler(Socket clientSocket,
+                         DataInputStream dataInputStream,
+                         DataOutputStream dataOutputStream,
+                         MessengerDatabaseDAO messengerDatabaseDAO) {
         this.clientSocket = clientSocket;
         this.dataInputStream = dataInputStream;
         this.dataOutputStream = dataOutputStream;
@@ -27,8 +30,7 @@ public class ClientHandler implements Runnable{
         try {
             System.out.println();
             messengerDatabaseDAO.openConnection();
-            messengerDatabaseDAO.addNewUserToDatabase(dataInputStream.readUTF(), dataInputStream.readUTF(), Gender.Male);
-            messengerDatabaseDAO.closeConnection();
+            System.out.println(dataInputStream.readUTF());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -38,6 +40,7 @@ public class ClientHandler implements Runnable{
             clientSocket.close();
             dataOutputStream.close();
             dataInputStream.close();
+            messengerDatabaseDAO.closeConnection();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

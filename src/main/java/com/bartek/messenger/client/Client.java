@@ -21,9 +21,14 @@ public class Client {
 
     public void startClientService() throws IOException {
         System.out.println("Client service has started");
-        dataOutputStream.writeUTF("Bartek");
-        dataOutputStream.writeUTF("Dupa12345");
-        closeStreams();
+    }
+    public void signUpUser(String username, String password){
+        System.out.println(username + " " + password);
+        try {
+            dataOutputStream.writeUTF(username + " " + password);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void closeStreams(){
         try {
