@@ -27,13 +27,26 @@ public class ClientHandler implements Runnable{
     @Override
     public void run() {
         System.out.println("Client handler has started");
-        try {
-            System.out.println();
-            messengerDatabaseDAO.openConnection();
-            System.out.println(dataInputStream.readUTF());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        messengerDatabaseDAO.openConnection();
+        boolean hasUserSignUp = false;
+        while (!hasUserSignUp){
+            try {
+                if (signUpUser()){
+                    dataOutputStream.writeUTF("Success");
+                    hasUserSignUp = true;
+                }
+                else {
+                    dataOutputStream.writeUTF("Fail");
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+    }
+    private boolean signUpUser() throws IOException{
+        String username = dataInputStream.readUTF();
+        String password = dataInputStream.readUTF();
+        return messengerDatabaseDAO.addNewUserToDatabase(username, password, Gender.Male);
     }
     public void terminateConnection(){
         try {

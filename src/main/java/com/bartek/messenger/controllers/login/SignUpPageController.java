@@ -24,18 +24,19 @@ public class SignUpPageController extends RedirectionPage {
             throw new RuntimeException(e);
         }
     }
-    public boolean signUp(ActionEvent event){
+    public void signUp(ActionEvent event){
         if (validate()){
-            // perform sign up logic
-            client.signUpUser(usernameField.getText(), passwordField.getText());
+            boolean result = client.signUpUser(usernameField.getText(), passwordField.getText());
+            if (!result){
+                warningsLabel.setText("Failed to sign up!");
+                return;
+            }
             try {
                 redirect(event, "FXML-files/main/main.fxml");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            return true;
         }
-        return false;
     }
     private boolean validate(){
         if (!Validator.CHECK_IF_PASSWORDS_ARE_IDENTICAL(passwordField.getText(), passwordConfirmationField.getText())){

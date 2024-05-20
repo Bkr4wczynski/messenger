@@ -22,10 +22,11 @@ public class Client {
     public void startClientService() throws IOException {
         System.out.println("Client service has started");
     }
-    public void signUpUser(String username, String password){
-        System.out.println(username + " " + password);
+    public boolean signUpUser(String username, String password){
         try {
-            dataOutputStream.writeUTF(username + " " + password);
+            dataOutputStream.writeUTF(username);
+            dataOutputStream.writeUTF(password);
+            return dataInputStream.readUTF().equals("Success");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -34,6 +35,7 @@ public class Client {
         try {
             dataOutputStream.close();
             dataInputStream.close();
+            socket.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

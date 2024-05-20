@@ -38,21 +38,28 @@ public class MessengerDatabaseDAO implements AutoCloseable{
             throw new RuntimeException(e);
         }
     }
-    public void addNewUserToDatabase(String username, String password, Gender gender){
+    public boolean addNewUserToDatabase(String username, String password, Gender gender){
         String query = "INSERT INTO users (username, password, gender) VALUES (?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             preparedStatement.setString(3, gender.name());
-
-            int result = preparedStatement.executeUpdate();
+            int result;
+            try {
+                result = preparedStatement.executeUpdate();
+            }
+            catch (Exception e){
+                System.out.println("There was an error: "+e);
+                return false;
+            }
             if (result == 1){
                 System.out.println("Successfully added new user to database!");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return true;
     }
     public User getUser(String username){
         String query = "SELECT * FROM users WHERE username = ?";
