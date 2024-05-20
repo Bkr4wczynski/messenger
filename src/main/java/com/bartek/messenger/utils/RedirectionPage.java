@@ -1,5 +1,6 @@
-package com.bartek.messenger;
+package com.bartek.messenger.utils;
 
+import com.bartek.messenger.MessengerApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

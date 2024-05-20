@@ -1,4 +1,4 @@
-package com.bartek.messenger;
+package com.bartek.messenger.dataRepresentation;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;

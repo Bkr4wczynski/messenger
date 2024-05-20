@@ -1,4 +1,4 @@
-package com.bartek.messenger;
+package com.bartek.messenger.dataRepresentation;
 
 public class Friend extends User{
     public User friendOf;

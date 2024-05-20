@@ -1,7 +1,7 @@
 package com.bartek.messenger.database;
 
-import com.bartek.messenger.Gender;
-import com.bartek.messenger.User;
+import com.bartek.messenger.dataRepresentation.Gender;
+import com.bartek.messenger.dataRepresentation.User;
 
 import java.time.LocalDateTime;
 

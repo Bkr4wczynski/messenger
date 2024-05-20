@@ -1,6 +1,6 @@
-package com.bartek.messenger.login;
+package com.bartek.messenger.controllers.login;
 
-import com.bartek.messenger.RedirectionPage;
+import com.bartek.messenger.utils.RedirectionPage;
 import com.bartek.messenger.utils.Validator;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;

@@ -1,6 +1,6 @@
 package com.bartek.messenger.server;
 
-import com.bartek.messenger.Gender;
+import com.bartek.messenger.dataRepresentation.Gender;
 import com.bartek.messenger.database.MessengerDatabaseDAO;
 
 import java.io.DataInputStream;

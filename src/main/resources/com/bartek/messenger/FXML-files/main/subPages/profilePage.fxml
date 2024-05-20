@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1015.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bartek.messenger.main.ProfilePageController">
+<AnchorPane prefHeight="1015.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bartek.messenger.controllers.mainPage.subPages.ProfilePageController">
    <children>
       <Label fx:id="usernameLabel" alignment="CENTER" prefHeight="50.0" prefWidth="1420.0" text="User name here">
          <font>

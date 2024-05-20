@@ -1,4 +1,4 @@
-package com.bartek.messenger.main;
+package com.bartek.messenger.controllers.mainPage.subPages;
 
 import javafx.event.ActionEvent;
 

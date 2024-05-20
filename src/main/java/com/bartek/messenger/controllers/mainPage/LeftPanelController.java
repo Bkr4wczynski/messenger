@@ -1,4 +1,4 @@
-package com.bartek.messenger.main;
+package com.bartek.messenger.controllers.mainPage;
 
 import javafx.fxml.Initializable;
 
