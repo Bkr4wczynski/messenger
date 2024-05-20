@@ -1,5 +1,6 @@
 package com.bartek.messenger.controllers.login;
 
+import com.bartek.messenger.client.Client;
 import com.bartek.messenger.utils.RedirectionPage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ public class LoginPageController extends RedirectionPage {
     public TextField usernameField;
     public PasswordField passwordField;
     public Label warningsLabel;
+    private Client client;
 
     public void redirectToSignUpPage(ActionEvent event) {
         try {
@@ -22,13 +24,10 @@ public class LoginPageController extends RedirectionPage {
             throw new RuntimeException(e);
         }
     }
-
     public void login(ActionEvent event){
         // tries to login via database
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        if (true){
-            // login succeed
+        boolean result = client.loginUser(usernameField.getText(), passwordField.getText(), "signin");
+        if (result){
             try {
                 redirect(event, "FXML-files/main/main.fxml");
             } catch (IOException e) {
@@ -36,11 +35,10 @@ public class LoginPageController extends RedirectionPage {
             }
         }
         else {
-            // login not succeed
+            warningsLabel.setText("Failed to login");
         }
     }
-    public List<String> getLoginCredentials(){
-        return Arrays.asList(usernameField.getText(), passwordField.getText());
+    public void setClient(Client client) {
+        this.client = client;
     }
-
 }

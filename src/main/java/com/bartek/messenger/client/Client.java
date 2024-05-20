@@ -22,10 +22,11 @@ public class Client {
     public void startClientService() throws IOException {
         System.out.println("Client service has started");
     }
-    public boolean signUpUser(String username, String password){
+    public boolean loginUser(String username, String password, String type){
         try {
             dataOutputStream.writeUTF(username);
             dataOutputStream.writeUTF(password);
+            dataOutputStream.writeUTF(type);
             return dataInputStream.readUTF().equals("Success");
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -61,12 +61,14 @@ public class MessengerDatabaseDAO implements AutoCloseable{
         }
         return true;
     }
-    public boolean isUserInDatabase(String username){
-        String query = "SELECT COUNT(*) = 1 FROM (SELECT username FROM users WHERE username = ?) AS a;";
+    public boolean loginUser(String username, String password){
+        String query = "SELECT COUNT(*) = 1 AND a.password = ? FROM (SELECT username, password FROM users WHERE username = ?) AS a;";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, username);
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, username);
             ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             return resultSet.getBoolean(1);
         } catch (SQLException e) {
             throw new RuntimeException(e);

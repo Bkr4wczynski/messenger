@@ -11,11 +11,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public abstract class RedirectionPage {
-    public void redirect(ActionEvent event, String filepath) throws IOException {
-        Parent parent = FXMLLoader.load(MessengerApp.class.getResource(filepath));
+    public Object redirect(ActionEvent event, String filepath) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MessengerApp.class.getResource(filepath));
+        Parent parent = fxmlLoader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
+        return fxmlLoader.getController();
     }
 }

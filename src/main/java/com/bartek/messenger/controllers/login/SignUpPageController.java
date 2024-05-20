@@ -19,14 +19,15 @@ public class SignUpPageController extends RedirectionPage {
 
     public void redirectToLoginPage(ActionEvent event) {
         try {
-            redirect(event, "FXML-files/login/loginPage.fxml");
+            LoginPageController loginPageController = (LoginPageController) redirect(event, "FXML-files/login/loginPage.fxml");
+            loginPageController.setClient(client);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
     public void signUp(ActionEvent event){
         if (validate()){
-            boolean result = client.signUpUser(usernameField.getText(), passwordField.getText());
+            boolean result = client.loginUser(usernameField.getText(), passwordField.getText(), "signup");
             if (!result){
                 warningsLabel.setText("Failed to sign up!");
                 return;

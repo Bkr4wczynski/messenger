@@ -28,12 +28,12 @@ public class ClientHandler implements Runnable{
     public void run() {
         System.out.println("Client handler has started");
         messengerDatabaseDAO.openConnection();
-        boolean hasUserSignUp = false;
-        while (!hasUserSignUp){
+        boolean hasUserLoggedIn = false;
+        while (!hasUserLoggedIn){
             try {
-                if (signUpUser()){
+                if (loginUser()){
                     dataOutputStream.writeUTF("Success");
-                    hasUserSignUp = true;
+                    hasUserLoggedIn = true;
                 }
                 else {
                     dataOutputStream.writeUTF("Fail");
@@ -43,11 +43,15 @@ public class ClientHandler implements Runnable{
             }
         }
     }
-    private boolean signUpUser() throws IOException{
+    private boolean loginUser() throws IOException{
         String username = dataInputStream.readUTF();
         String password = dataInputStream.readUTF();
-        return messengerDatabaseDAO.addNewUserToDatabase(username, password, Gender.Male);
+        String type = dataInputStream.readUTF();
+        if (type.equals("signup"))
+            return messengerDatabaseDAO.addNewUserToDatabase(username, password, Gender.Male);
+        return messengerDatabaseDAO.loginUser(username, password);
     }
+
     public void terminateConnection(){
         try {
             clientSocket.close();
