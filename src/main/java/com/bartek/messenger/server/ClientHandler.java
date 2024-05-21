@@ -40,7 +40,6 @@ public class ClientHandler implements Runnable{
                 }
             } catch (IOException e) {
                 System.out.println("User failed to login!");
-                terminateConnection();
                 return;
             }
         }

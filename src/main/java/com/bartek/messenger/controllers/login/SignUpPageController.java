@@ -52,6 +52,10 @@ public class SignUpPageController extends RedirectionPage {
             warningsLabel.setText("Password is too short");
             return false;
         }
+        if (!Validator.CHECK_IF_PASSWORD_IS_STRONG_ENOUGH(passwordField.getText())){
+            warningsLabel.setText("Password is too weak");
+            return false;
+        }
         warningsLabel.setText("");
         return true;
     }

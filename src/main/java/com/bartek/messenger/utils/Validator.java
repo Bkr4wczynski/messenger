@@ -14,4 +14,8 @@ public class Validator {
     public static boolean CHECK_IF_PASSWORDS_ARE_IDENTICAL(String password1, String password2){
         return password1.equals(password2);
     }
+    public static boolean CHECK_IF_PASSWORD_IS_STRONG_ENOUGH(String password){
+        System.out.println(password);
+        return password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–{}:;',?/*~$\\-_^+=<>]).{8,20}$");
+    }
 }

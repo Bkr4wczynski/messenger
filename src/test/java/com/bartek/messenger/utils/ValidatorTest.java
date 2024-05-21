@@ -6,20 +6,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class ValidatorTest {
     @Test
     void testPassword(){
-        assertFalse(validate("", "", ""));
-        assertFalse(validate("1", "Password123_", "Password123_"));
-        assertFalse(validate("1234", "Password123_", "Password123"));
-        assertFalse(validate("1234/", "Password123_", "Password123_"));
-        assertFalse(validate("12345", "P-ass12", "P-ass12"));
-        assertFalse(validate("12345678900987654321qwertyuiop", "P-ass12", "P-ass12"));
-        assertFalse(validate("1234", "12345678900987654321qwertyuiop", "12345678900987654321qwertyuiop"));
+        assertTrue(Validator.CHECK_IF_PASSWORD_IS_LONG_ENOUGH("1234567899"));
+        assertFalse(Validator.CHECK_IF_PASSWORD_IS_LONG_ENOUGH("asdwe3"));
 
-        assertTrue(validate("1234", "Password123_", "Password123_"));
-        assertTrue(validate("Jasiu1", "Jan4k2024_", "Jan4k2024_"));
+        assertTrue(Validator.CHECK_IF_PASSWORDS_ARE_IDENTICAL("Seks2024", "Seks2024"));
+        assertFalse(Validator.CHECK_IF_PASSWORDS_ARE_IDENTICAL("Abcd9909", "abcd9909"));
+        assertFalse(Validator.CHECK_IF_PASSWORDS_ARE_IDENTICAL("Abcd9909", "aawhh9909"));
+
+        assertFalse(Validator.CHECK_IF_PASSWORD_IS_STRONG_ENOUGH("abcd"));
+        assertFalse(Validator.CHECK_IF_PASSWORD_IS_STRONG_ENOUGH("abcdqwerty"));
+        assertFalse(Validator.CHECK_IF_PASSWORD_IS_STRONG_ENOUGH("abcd990987"));
+        assertFalse(Validator.CHECK_IF_PASSWORD_IS_STRONG_ENOUGH("ABcd9912345"));
+
+        assertTrue(Validator.CHECK_IF_PASSWORD_IS_STRONG_ENOUGH("ABcd_9910"));
+        assertTrue(Validator.CHECK_IF_PASSWORD_IS_STRONG_ENOUGH("G00D_P4ssw0rD!"));
 
     }
-    boolean validate(String username, String pass1, String pass2){
-        return Validator.CHECK_IF_PASSWORDS_ARE_IDENTICAL(pass1, pass2) && Validator.CHECK_IF_USERNAME_IS_VALID(username)
-                && Validator.CHECK_IF_PASSWORD_IS_LONG_ENOUGH(pass1);
-    }
+
 }
