@@ -26,7 +26,7 @@ public class DataSource {
         return DATA_SOURCE.getConnection();
     }
     public static void closeConnection() throws SQLException {
-        DATA_SOURCE.getConnection();
+        DATA_SOURCE.getConnection().close();
         DATA_SOURCE.close();
     }
 }

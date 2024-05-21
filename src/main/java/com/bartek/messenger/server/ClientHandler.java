@@ -39,7 +39,9 @@ public class ClientHandler implements Runnable{
                     dataOutputStream.writeUTF("Fail");
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println("User failed to login!");
+                terminateConnection();
+                return;
             }
         }
     }
@@ -58,6 +60,7 @@ public class ClientHandler implements Runnable{
             dataOutputStream.close();
             dataInputStream.close();
             messengerDatabaseDAO.closeConnection();
+            System.out.println("terminated connection for client: "+clientSocket);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
