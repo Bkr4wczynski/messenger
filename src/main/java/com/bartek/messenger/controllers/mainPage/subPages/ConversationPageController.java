@@ -2,7 +2,7 @@ package com.bartek.messenger.controllers.mainPage.subPages;
 
 import com.bartek.messenger.dataRepresentation.User;
 import com.bartek.messenger.dataRepresentation.Gender;
-import com.bartek.messenger.database.UserGetter;
+import com.bartek.messenger.utils.UserGetter;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;

@@ -1,4 +1,4 @@
-package com.bartek.messenger.database;
+package com.bartek.messenger.utils;
 
 import com.bartek.messenger.dataRepresentation.Gender;
 import com.bartek.messenger.dataRepresentation.User;

@@ -1,6 +1,6 @@
 package com.bartek.messenger.controllers.mainPage.subPages;
 
-import com.bartek.messenger.database.UserGetter;
+import com.bartek.messenger.utils.UserGetter;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
