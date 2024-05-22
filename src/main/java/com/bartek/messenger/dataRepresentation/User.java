@@ -1,7 +1,9 @@
 package com.bartek.messenger.dataRepresentation;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,12 +11,12 @@ public class User implements Serializable {
     public int userID;
     public String username;
     public Gender gender;
-    public LocalDateTime createdAt;
+    public LocalDate createdAt;
     private final Set<Friend> friends;
     private final Set<User> blocked;
     private boolean online;
 
-    public User(int userID, String username, Gender gender, LocalDateTime createdAt) {
+    public User(int userID, String username, Gender gender, LocalDate createdAt) {
         this.username = username;
         this.userID = userID;
         this.gender = gender;

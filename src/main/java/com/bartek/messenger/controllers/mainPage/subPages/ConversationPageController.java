@@ -9,6 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
@@ -19,7 +20,7 @@ public class ConversationPageController implements Initializable {
     User friend;
     private User getCurrentFriend(){
         // logic
-        return new User(5, "Cwaniak", Gender.male, LocalDateTime.now());
+        return new User(5, "Cwaniak", Gender.male, LocalDate.now());
     }
     private User getCurrentUser(){
         return UserGetter.GET_CURRENT_USER();

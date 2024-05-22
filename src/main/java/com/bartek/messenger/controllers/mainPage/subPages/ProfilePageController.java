@@ -9,15 +9,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProfilePageController implements Initializable {
-    private User currentUser = UserGetter.GET_CURRENT_USER();
+    private final User user = UserGetter.GET_CURRENT_USER();
     public Label usernameLabel;
     public Label createdAtLabel;
     public Label aboutLabel;
 
     private void setUsernameLabels(){
-        usernameLabel.setText(currentUser.username);
-        createdAtLabel.setText("Has account since "+currentUser.createdAt);
-        aboutLabel.setText("About "+currentUser.username);
+        usernameLabel.setText(user.username);
+        createdAtLabel.setText("Has account since "+ user.createdAt);
+        aboutLabel.setText("About "+ user.username);
     }
 
     @Override

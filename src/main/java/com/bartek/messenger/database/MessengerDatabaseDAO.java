@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class MessengerDatabaseDAO implements AutoCloseable{
@@ -85,8 +86,8 @@ public class MessengerDatabaseDAO implements AutoCloseable{
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             user = new User(resultSet.getInt(1),
-                    resultSet.getString(3), Gender.valueOf(resultSet.getString(4)),
-                    LocalDateTime.now());
+                    resultSet.getString(2), Gender.valueOf(resultSet.getString(4)),
+                    LocalDate.now());
             // implement datetime
             resultSet.close();
         } catch (SQLException e) {
