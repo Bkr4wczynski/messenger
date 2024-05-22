@@ -1,8 +1,11 @@
 package com.bartek.messenger.client;
 
+import com.bartek.messenger.dataRepresentation.User;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -27,8 +30,12 @@ public class Client {
             dataOutputStream.writeUTF(username);
             dataOutputStream.writeUTF(password);
             dataOutputStream.writeUTF(type);
-            return dataInputStream.readUTF().equals("Success");
+            boolean result = dataInputStream.readUTF().equals("Success");
+            User currentUser = (User) new ObjectInputStream(dataInputStream).readObject();
+            return result;
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

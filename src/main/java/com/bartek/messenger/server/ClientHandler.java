@@ -1,11 +1,13 @@
 package com.bartek.messenger.server;
 
 import com.bartek.messenger.dataRepresentation.Gender;
+import com.bartek.messenger.dataRepresentation.User;
 import com.bartek.messenger.database.MessengerDatabaseDAO;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable{
@@ -13,6 +15,7 @@ public class ClientHandler implements Runnable{
     private final DataInputStream dataInputStream;
     private final DataOutputStream dataOutputStream;
     private final MessengerDatabaseDAO messengerDatabaseDAO;
+    private String username;
 
     public ClientHandler(Socket clientSocket,
                          DataInputStream dataInputStream,
@@ -43,13 +46,21 @@ public class ClientHandler implements Runnable{
                 return;
             }
         }
+        User currentUser = messengerDatabaseDAO.getUser(username);
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(dataOutputStream);
+            objectOutputStream.writeObject(currentUser);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(currentUser);
     }
     private boolean loginUser() throws IOException{
-        String username = dataInputStream.readUTF();
+        username = dataInputStream.readUTF();
         String password = dataInputStream.readUTF();
         String type = dataInputStream.readUTF();
         if (type.equals("signup"))
-            return messengerDatabaseDAO.addNewUserToDatabase(username, password, Gender.Male);
+            return messengerDatabaseDAO.addNewUserToDatabase(username, password, Gender.male);
         return messengerDatabaseDAO.loginUser(username, password);
     }
 

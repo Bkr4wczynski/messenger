@@ -69,7 +69,9 @@ public class MessengerDatabaseDAO implements AutoCloseable{
             preparedStatement.setString(2, username);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            return resultSet.getBoolean(1);
+            boolean result = resultSet.getBoolean(1);
+            resultSet.close();
+            return result;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -81,10 +83,12 @@ public class MessengerDatabaseDAO implements AutoCloseable{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             user = new User(resultSet.getInt(1),
                     resultSet.getString(3), Gender.valueOf(resultSet.getString(4)),
                     LocalDateTime.now());
             // implement datetime
+            resultSet.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

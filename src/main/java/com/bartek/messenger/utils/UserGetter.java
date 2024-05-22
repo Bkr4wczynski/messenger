@@ -8,6 +8,6 @@ import java.time.LocalDateTime;
 public class UserGetter {
     public static User GET_CURRENT_USER(){
         // database logic
-        return new User(5, "cwaniak", Gender.Male, LocalDateTime.now());
+        return new User(5, "cwaniak", Gender.male, LocalDateTime.now());
     }
 }

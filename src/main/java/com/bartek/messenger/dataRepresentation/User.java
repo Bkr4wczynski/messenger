@@ -1,10 +1,11 @@
 package com.bartek.messenger.dataRepresentation;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable {
     public int userID;
     public String username;
     public Gender gender;
