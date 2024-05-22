@@ -15,12 +15,12 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="1420.0" text="Has account since Date">
+            <Label fx:id="createdAtLabel" alignment="CENTER" prefHeight="50.0" prefWidth="1420.0" text="Has account since Date">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="1420.0" text="About User">
+            <Label fx:id="aboutLabel" alignment="CENTER" prefHeight="50.0" prefWidth="1420.0" text="About User">
                <font>
                   <Font size="30.0" />
                </font>

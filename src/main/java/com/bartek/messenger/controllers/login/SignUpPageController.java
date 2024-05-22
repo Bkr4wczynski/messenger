@@ -1,5 +1,6 @@
 package com.bartek.messenger.controllers.login;
 
+import com.bartek.messenger.MessengerApp;
 import com.bartek.messenger.client.Client;
 import com.bartek.messenger.utils.RedirectionPage;
 import com.bartek.messenger.utils.Validator;
@@ -15,12 +16,11 @@ public class SignUpPageController extends RedirectionPage {
     public TextField usernameField;
     public PasswordField passwordField;
     public PasswordField passwordConfirmationField;
-    private Client client;
+    private Client client = MessengerApp.client;
 
     public void redirectToLoginPage(ActionEvent event) {
         try {
-            LoginPageController loginPageController = (LoginPageController) redirect(event, "FXML-files/login/loginPage.fxml");
-            loginPageController.setClient(client);
+            redirect(event, "FXML-files/login/loginPage.fxml");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -60,7 +60,4 @@ public class SignUpPageController extends RedirectionPage {
         return true;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
 }

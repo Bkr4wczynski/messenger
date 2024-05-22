@@ -1,5 +1,6 @@
 package com.bartek.messenger.controllers.login;
 
+import com.bartek.messenger.MessengerApp;
 import com.bartek.messenger.client.Client;
 import com.bartek.messenger.utils.RedirectionPage;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ public class LoginPageController extends RedirectionPage {
     public TextField usernameField;
     public PasswordField passwordField;
     public Label warningsLabel;
-    private Client client;
+    private Client client = MessengerApp.client;
 
     public void redirectToSignUpPage(ActionEvent event) {
         try {
@@ -37,8 +38,5 @@ public class LoginPageController extends RedirectionPage {
         else {
             warningsLabel.setText("Failed to login");
         }
-    }
-    public void setClient(Client client) {
-        this.client = client;
     }
 }

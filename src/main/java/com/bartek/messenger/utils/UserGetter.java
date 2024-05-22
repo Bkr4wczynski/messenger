@@ -1,13 +1,13 @@
 package com.bartek.messenger.utils;
 
-import com.bartek.messenger.dataRepresentation.Gender;
+import com.bartek.messenger.MessengerApp;
+import com.bartek.messenger.client.Client;
 import com.bartek.messenger.dataRepresentation.User;
-
-import java.time.LocalDateTime;
 
 public class UserGetter {
     public static User GET_CURRENT_USER(){
         // database logic
-        return new User(5, "cwaniak", Gender.male, LocalDateTime.now());
+        Client client = MessengerApp.client;
+        return client.getCurrentUser();
     }
 }

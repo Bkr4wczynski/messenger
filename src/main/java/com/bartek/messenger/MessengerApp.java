@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 
 public class MessengerApp extends Application {
-    static Client client;
+    public static Client client;
     SignUpPageController signUpPageController;
     @Override
     public void start(Stage stage) throws IOException {
@@ -25,7 +25,6 @@ public class MessengerApp extends Application {
         stage.setTitle("Messenger");
         stage.setScene(scene);
         signUpPageController = fxmlLoader.getController();
-        signUpPageController.setClient(client);
         stage.show();
         stage.setOnCloseRequest(windowEvent -> {
             windowEvent.consume();

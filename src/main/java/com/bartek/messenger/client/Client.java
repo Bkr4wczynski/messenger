@@ -14,6 +14,7 @@ public class Client {
     private InetAddress ip;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
+    private User currentUser;
 
     public Client(InetAddress ip, int portNumber) throws IOException {
         this.ip = ip;
@@ -31,7 +32,7 @@ public class Client {
             dataOutputStream.writeUTF(password);
             dataOutputStream.writeUTF(type);
             boolean result = dataInputStream.readUTF().equals("Success");
-            User currentUser = (User) new ObjectInputStream(dataInputStream).readObject();
+            currentUser = (User) new ObjectInputStream(dataInputStream).readObject();
             return result;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -47,5 +48,8 @@ public class Client {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public User getCurrentUser() {
+        return currentUser;
     }
 }
