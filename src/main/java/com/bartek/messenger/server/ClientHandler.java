@@ -49,6 +49,7 @@ public class ClientHandler implements Runnable{
                 return;
             }
         }
+        System.out.println("Past loop");
         User currentUser = messengerDatabaseDAO.getUser(username);
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(dataOutputStream);

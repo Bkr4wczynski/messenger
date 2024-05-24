@@ -28,15 +28,16 @@ public class Client {
     }
     public boolean loginUser(String username, String password, String type){
         try {
+            // IF YOU ARE GOING TO TOUCH THIS VERY FUNCTION, DO IT VERY I MEAN LITERALLY EXTREMELY CAREFUL OR THE WHOLE APP BREAKS!!!
             dataOutputStream.writeUTF(username);
             dataOutputStream.writeUTF(password);
             dataOutputStream.writeUTF(type);
             boolean result = dataInputStream.readUTF().equals("Success");
+            if (!result)
+                return false;
             currentUser = (User) new ObjectInputStream(dataInputStream).readObject();
-            return result;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+            return true;
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
