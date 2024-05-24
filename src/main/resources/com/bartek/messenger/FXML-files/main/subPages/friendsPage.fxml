@@ -42,7 +42,7 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="130.0" text="Add friend">
+                  <Button mnemonicParsing="false" onAction="#displayAddFriendPage" prefWidth="130.0" text="Add friend">
                      <font>
                         <Font size="20.0" />
                      </font>
