@@ -9,6 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class ClientHandler implements Runnable{
     private final Socket clientSocket;
@@ -16,15 +17,18 @@ public class ClientHandler implements Runnable{
     private final DataOutputStream dataOutputStream;
     private final MessengerDatabaseDAO messengerDatabaseDAO;
     private String username;
+    private List<ClientHandler> clientHandlers;
 
     public ClientHandler(Socket clientSocket,
                          DataInputStream dataInputStream,
                          DataOutputStream dataOutputStream,
-                         MessengerDatabaseDAO messengerDatabaseDAO) {
+                         MessengerDatabaseDAO messengerDatabaseDAO,
+                         List<ClientHandler> clientHandlers) {
         this.clientSocket = clientSocket;
         this.dataInputStream = dataInputStream;
         this.dataOutputStream = dataOutputStream;
         this.messengerDatabaseDAO = messengerDatabaseDAO;
+        this.clientHandlers = clientHandlers;
     }
 
     @Override
@@ -35,7 +39,9 @@ public class ClientHandler implements Runnable{
         while (true){
             try {
                 String output = dataInputStream.readUTF();
-                System.out.println(output);
+                for (ClientHandler clientHandler : clientHandlers){
+                    clientHandler.dataOutputStream.writeUTF(output);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
