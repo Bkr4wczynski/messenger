@@ -16,8 +16,9 @@ public class ClientRunnable implements Runnable {
     @Override
     public void run() {
         while (true){
+            String response = null;
             try {
-                String response = dataInputStream.readUTF();
+                response = dataInputStream.readUTF();
                 System.out.println(response);
             } catch (IOException e) {
                 throw new RuntimeException(e);

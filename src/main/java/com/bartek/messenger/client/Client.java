@@ -2,10 +2,7 @@ package com.bartek.messenger.client;
 
 import com.bartek.messenger.dataRepresentation.User;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -14,20 +11,32 @@ public class Client {
     private InetAddress ip;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
+    private ObjectInputStream objectInputStream;
     private User currentUser;
+    private ClientRunnable clientRunnable;
 
     public Client(InetAddress ip, int portNumber) throws IOException {
         this.ip = ip;
         this.socket = new Socket(ip, portNumber);
-        dataInputStream = new DataInputStream(socket.getInputStream());
-        dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        this.dataInputStream = new DataInputStream(socket.getInputStream());
+        this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        this.objectInputStream = new ObjectInputStream(dataInputStream);
     }
-
     void startClientService() throws IOException {
         System.out.println("Client service has started");
-        Thread clientThread = new Thread(new ClientRunnable(socket, dataInputStream));
+        clientRunnable = new ClientRunnable(socket, dataInputStream);
+        Thread clientThread = new Thread(clientRunnable);
         clientThread.start();
-        dataOutputStream.writeUTF("Hejo jestem "+currentUser.username);
+    }
+    public User getUserByUsername(String username) throws ClassNotFoundException {
+        try {
+            dataOutputStream.writeUTF("getUserByUsername");
+            dataOutputStream.writeUTF(username);
+            dataOutputStream.flush();
+            return (User) objectInputStream.readObject();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public boolean loginUser(String username, String password, String type){
         try {
@@ -38,7 +47,7 @@ public class Client {
             boolean result = dataInputStream.readUTF().equals("Success");
             if (!result)
                 return false;
-            currentUser = (User) new ObjectInputStream(dataInputStream).readObject();
+            currentUser = (User) objectInputStream.readObject();
             startClientService();
             return true;
         } catch (IOException | ClassNotFoundException e) {
@@ -49,6 +58,7 @@ public class Client {
         try {
             dataOutputStream.close();
             dataInputStream.close();
+            objectInputStream.close();
             socket.close();
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -18,6 +18,7 @@ public class ClientHandler implements Runnable{
     private final MessengerDatabaseDAO messengerDatabaseDAO;
     private String username;
     private List<ClientHandler> clientHandlers;
+    private ObjectOutputStream objectOutputStream;
 
     public ClientHandler(Socket clientSocket,
                          DataInputStream dataInputStream,
@@ -25,10 +26,15 @@ public class ClientHandler implements Runnable{
                          MessengerDatabaseDAO messengerDatabaseDAO,
                          List<ClientHandler> clientHandlers) {
         this.clientSocket = clientSocket;
-        this.dataInputStream = dataInputStream;
         this.dataOutputStream = dataOutputStream;
+        this.dataInputStream = dataInputStream;
         this.messengerDatabaseDAO = messengerDatabaseDAO;
         this.clientHandlers = clientHandlers;
+        try {
+            this.objectOutputStream = new ObjectOutputStream(dataOutputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -38,14 +44,25 @@ public class ClientHandler implements Runnable{
         performLoggingService();
         while (true){
             try {
-                String output = dataInputStream.readUTF();
-                for (ClientHandler clientHandler : clientHandlers){
-                    clientHandler.dataOutputStream.writeUTF(output);
+                String command = dataInputStream.readUTF();
+                String inputData = dataInputStream.readUTF();
+                if (command.equals("getUserByUsername")){
+                    getUserByUsername(inputData);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
+    }
+    private void getUserByUsername(String username){
+        User user = messengerDatabaseDAO.getUser(username);
+        try {
+            objectOutputStream.writeObject(user);
+            objectOutputStream.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
     private void performLoggingService(){
         boolean hasUserLoggedIn = false;
@@ -63,15 +80,7 @@ public class ClientHandler implements Runnable{
                 return;
             }
         }
-        System.out.println("Past loop");
-        User currentUser = messengerDatabaseDAO.getUser(username);
-        try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(dataOutputStream);
-            objectOutputStream.writeObject(currentUser);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(currentUser);
+        getUserByUsername(username);
     }
     private boolean loginUser() throws IOException{
         username = dataInputStream.readUTF();
@@ -87,6 +96,7 @@ public class ClientHandler implements Runnable{
             clientSocket.close();
             dataOutputStream.close();
             dataInputStream.close();
+            objectOutputStream.close();
             messengerDatabaseDAO.closeConnection();
             System.out.println("terminated connection for client: "+clientSocket);
         } catch (IOException e) {
