@@ -23,11 +23,8 @@ public class Server {
             while (true) {
                 socket = serverSocket.accept();
                 System.out.println("Connection established with client: "+socket.getInetAddress());
-                DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-                DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-
                 System.out.println("Assigning new thread for client...");
-                ClientHandler clientHandler = new ClientHandler(socket, dataInputStream, dataOutputStream, messengerDatabaseDAO, clientHandlerList);
+                ClientHandler clientHandler = new ClientHandler(socket, messengerDatabaseDAO, clientHandlerList);
                 clientHandlerList.add(clientHandler);
                 Thread thread = new Thread(clientHandler);
                 thread.start();

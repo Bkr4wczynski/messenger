@@ -4,34 +4,29 @@ import com.bartek.messenger.dataRepresentation.Gender;
 import com.bartek.messenger.dataRepresentation.User;
 import com.bartek.messenger.database.MessengerDatabaseDAO;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 
-public class ClientHandler implements Runnable{
+public class ClientHandler implements Runnable {
     private final Socket clientSocket;
-    private final DataInputStream dataInputStream;
-    private final DataOutputStream dataOutputStream;
+    private final ObjectInputStream objectInputStream;
+    private final ObjectOutputStream objectOutputStream;
     private final MessengerDatabaseDAO messengerDatabaseDAO;
     private String username;
     private List<ClientHandler> clientHandlers;
-    private ObjectOutputStream objectOutputStream;
 
     public ClientHandler(Socket clientSocket,
-                         DataInputStream dataInputStream,
-                         DataOutputStream dataOutputStream,
                          MessengerDatabaseDAO messengerDatabaseDAO,
                          List<ClientHandler> clientHandlers) {
         this.clientSocket = clientSocket;
-        this.dataOutputStream = dataOutputStream;
-        this.dataInputStream = dataInputStream;
         this.messengerDatabaseDAO = messengerDatabaseDAO;
         this.clientHandlers = clientHandlers;
         try {
-            this.objectOutputStream = new ObjectOutputStream(dataOutputStream);
+            this.objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            this.objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -42,11 +37,11 @@ public class ClientHandler implements Runnable{
         System.out.println("Client handler has started");
         messengerDatabaseDAO.openConnection();
         performLoggingService();
-        while (true){
+        while (true) {
             try {
-                String command = dataInputStream.readUTF();
-                String inputData = dataInputStream.readUTF();
-                if (command.equals("getUserByUsername")){
+                String command = objectInputStream.readUTF();
+                String inputData = objectInputStream.readUTF();
+                if (command.equals("getUserByUsername")) {
                     getUserByUsername(inputData);
                 }
             } catch (IOException e) {
@@ -54,26 +49,29 @@ public class ClientHandler implements Runnable{
             }
         }
     }
-    private void getUserByUsername(String username){
+
+    private void getUserByUsername(String username) {
         User user = messengerDatabaseDAO.getUser(username);
         try {
+            System.out.println(user.username);
             objectOutputStream.writeObject(user);
             objectOutputStream.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
-    private void performLoggingService(){
+
+    private void performLoggingService() {
         boolean hasUserLoggedIn = false;
-        while (!hasUserLoggedIn){
+        while (!hasUserLoggedIn) {
             try {
-                if (loginUser()){
-                    dataOutputStream.writeUTF("Success");
+                if (loginUser()) {
+                    objectOutputStream.writeUTF("Success");
+                    objectOutputStream.flush();
                     hasUserLoggedIn = true;
-                }
-                else {
-                    dataOutputStream.writeUTF("Fail");
+                } else {
+                    objectOutputStream.writeUTF("Fail");
+                    objectOutputStream.flush();
                 }
             } catch (IOException e) {
                 System.out.println("User failed to login!");
@@ -82,23 +80,23 @@ public class ClientHandler implements Runnable{
         }
         getUserByUsername(username);
     }
-    private boolean loginUser() throws IOException{
-        username = dataInputStream.readUTF();
-        String password = dataInputStream.readUTF();
-        String type = dataInputStream.readUTF();
+
+    private boolean loginUser() throws IOException {
+        username = objectInputStream.readUTF();
+        String password = objectInputStream.readUTF();
+        String type = objectInputStream.readUTF();
         if (type.equals("signup"))
             return messengerDatabaseDAO.addNewUserToDatabase(username, password, Gender.male);
         return messengerDatabaseDAO.loginUser(username, password);
     }
 
-    public void terminateConnection(){
+    public void terminateConnection() {
         try {
             clientSocket.close();
-            dataOutputStream.close();
-            dataInputStream.close();
             objectOutputStream.close();
+            objectInputStream.close();
             messengerDatabaseDAO.closeConnection();
-            System.out.println("terminated connection for client: "+clientSocket);
+            System.out.println("terminated connection for client: " + clientSocket);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
