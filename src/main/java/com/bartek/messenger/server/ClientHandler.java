@@ -32,6 +32,14 @@ public class ClientHandler implements Runnable{
         System.out.println("Client handler has started");
         messengerDatabaseDAO.openConnection();
         performLoggingService();
+        while (true){
+            try {
+                String output = dataInputStream.readUTF();
+                System.out.println(output);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
     private void performLoggingService(){
         boolean hasUserLoggedIn = false;

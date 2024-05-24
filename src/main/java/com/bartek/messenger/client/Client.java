@@ -23,8 +23,11 @@ public class Client {
         dataOutputStream = new DataOutputStream(socket.getOutputStream());
     }
 
-    public void startClientService() throws IOException {
+    void startClientService() throws IOException {
         System.out.println("Client service has started");
+        Thread clientThread = new Thread(new ClientRunnable(socket, dataInputStream));
+        clientThread.start();
+        dataOutputStream.writeUTF("Hejo jestem "+currentUser.username);
     }
     public boolean loginUser(String username, String password, String type){
         try {
@@ -36,6 +39,7 @@ public class Client {
             if (!result)
                 return false;
             currentUser = (User) new ObjectInputStream(dataInputStream).readObject();
+            startClientService();
             return true;
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);

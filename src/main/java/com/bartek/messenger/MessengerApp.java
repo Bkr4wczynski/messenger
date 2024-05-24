@@ -39,7 +39,6 @@ public class MessengerApp extends Application {
         client = null;
         try {
             client = new Client(InetAddress.getByName("localhost"), 5056);
-            client.startClientService();
         }
         catch (IOException e) {
             System.out.println("Server is shutdown!");
